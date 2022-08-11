@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import {getAirlineById, getAirportByCode} from './data';
 import RoutesTable from './components/Table';
+const ROUTES_PER_PAGE = 50;
 
 
 function formatValue(property, value) {
@@ -35,7 +36,7 @@ const App = () => {
           Welcome to the app!
         </p>
       </section>
-      <RoutesTable className="routes-table" columns={columns} rows="" format={formatValue} />
+      <RoutesTable className="routes-table" columns={columns} rows="" format={formatValue} PER_PAGE={ROUTES_PER_PAGE} />
     </div>
   )
 }
