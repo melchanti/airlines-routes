@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import data from './data';
+import data, {getAirlineById, getAirportByCode} from './data';
 import { Table } from 'react-bootstrap';
 
 const Routes = () => {
@@ -17,14 +17,20 @@ const Routes = () => {
         </tr>
       </thead>
       <tbody>
-        {data.routes.map((route, index) => 
+        {data.routes.map((route, index) => {
+          const AIRLINE_NAME = getAirlineById(route.airline).name;
+          const SRC_NAME = getAirportByCode(route.src).name;
+          const DEST_NAME = getAirportByCode(route.dest).name;
+
+          return (
             <tr key={index}>
               <td>{index + 1}</td>
-              <td>{route.airline}</td>
-              <td>{route.src}</td>
-              <td>{route.dest}</td>
+              <td>{AIRLINE_NAME}</td>
+              <td>{SRC_NAME}</td>
+              <td>{DEST_NAME}</td>
             </tr>
-        )}
+          )
+        })}
       </tbody>
     </Table>
     </div>
