@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Table} from 'react-bootstrap';
 import PrevNextButtons from './PrevNextButtons';
 
@@ -22,7 +22,10 @@ const RoutesTable = ({className, columns, rows, format, PER_PAGE}) => {
     margin: "0 auto",
     width: "90%"
   }
-
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [rows]);
+  
   const ALL_ROWS = formattedRows(rows, columns, format);
 
   const [currentPage, setCurrentPage] = useState(1);
