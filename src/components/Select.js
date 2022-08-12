@@ -10,7 +10,7 @@ const Select = ({ options, valueKey, titleKey, allTitle, value, onSelect}) => {
   let allOptions = valueKey === 'id' ? data.airlines : data.airports
   let optionKeys = options.map(option => option[valueKey]);
   return (
-    <Form.Select style={selectStyle} onChange={onSelect} size="sm" value={value}>
+    <Form.Select style={selectStyle} onChange={onSelect} size="sm" value={value} className="selectAirport">
       <option>{allTitle}</option>
       {allOptions.map(airline => {
         return (

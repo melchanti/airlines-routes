@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import {getAirlineById, getAirportByCode} from './data';
 import RoutesTable from './components/Table';
@@ -59,7 +59,8 @@ const handleAirlineSelect = (event, setRoutes, setValue, setFilteredAirports, ai
   setValue(event.target.value);
 }
 
-const handleAirportSelect = (event, setRoutes, setValue, setFilteredAirlines, airlineSelect) => {
+const changeAirport = (value, setRoutes, setValue, setFilteredAirlines, airlineSelect) => {
+  console.log(setFilteredAirlines);
   let airportCode;
   let airlineId;
   try {
@@ -70,7 +71,7 @@ const handleAirportSelect = (event, setRoutes, setValue, setFilteredAirlines, ai
 
   try {
     
-    airportCode = data.airports.find(airport => event.target.value === airport.name).code;
+    airportCode = data.airports.find(airport => value === airport.name).code;
     let filteredRoutes = data.routes.filter(route => {
       return (route.src === airportCode || route.dest === airportCode);
     });
@@ -94,7 +95,11 @@ const handleAirportSelect = (event, setRoutes, setValue, setFilteredAirlines, ai
     }
     setFilteredAirlines(data.airlines);
   }
-  setValue(event.target.value);
+  setValue(value);
+}
+
+const handleAirportSelect = (event, setRoutes, setValue, setFilteredAirlines, airlineSelect) => {
+  changeAirport(event.target.value, setRoutes, setValue, setFilteredAirlines, airlineSelect);
 }
 
 const handleFilterReset = (setAirlineSelect, setAirportSelect, setRoutes) => {
@@ -123,13 +128,20 @@ const App = () => {
   filteredAirports.sort((a, b) => {
     return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
   });
-
   return (
     <div className="app">
       <header className="header">
         <h1 className="title">Airline Routes</h1>
       </header>
-      <Map routes={ routes } />
+      <Map 
+        changeAirport={changeAirport} 
+        routes={ routes }
+        setRoutes={ setRoutes }
+        setAirportSelect={setAirportSelect}
+        setFilteredAirlines={setFilteredAirlines}
+        airlineSelect={airlineSelect}
+        resetFilter={() => handleFilterReset(setAirlineSelect, setAirportSelect, setRoutes)}
+      />
       <div className="divSelect">
         <Select 
           options={filteredAirlines}
