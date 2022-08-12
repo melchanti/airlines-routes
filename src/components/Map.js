@@ -19,7 +19,6 @@ const Map = ({routes, changeAirport, setRoutes, setAirportSelect, setFilteredAir
     e.preventDefault();
     e.stopPropagation();
     changeAirport(e.target.children[0].textContent, setRoutes, setAirportSelect, setFilteredAirlines, airlineSelect);
-    console.log(e.target.children[0].textContent);
   }
 
   const handleMapClick = (e) => {

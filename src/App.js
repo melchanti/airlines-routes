@@ -60,7 +60,6 @@ const handleAirlineSelect = (event, setRoutes, setValue, setFilteredAirports, ai
 }
 
 const changeAirport = (value, setRoutes, setValue, setFilteredAirlines, airlineSelect) => {
-  console.log(setFilteredAirlines);
   let airportCode;
   let airlineId;
   try {
