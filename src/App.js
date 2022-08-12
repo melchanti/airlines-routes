@@ -149,6 +149,7 @@ const App = () => {
           allTitle="All Airlines"
           value={airlineSelect}
           onSelect={((event) => handleAirlineSelect(event, setRoutes, setAirlineSelect, setFilteredAirports, airportSelect))}
+          routes={routes}
         />
         <Select
           options={filteredAirports}
@@ -157,6 +158,7 @@ const App = () => {
           allTitle="All Airports"
           value={airportSelect}
           onSelect={((event) => handleAirportSelect(event, setRoutes, setAirportSelect, setFilteredAirlines, airlineSelect))}
+          routes={routes}
         />
         <Button onClick={((event) => handleFilterReset(setAirlineSelect, setAirportSelect, setRoutes))}>
           Reset filters
