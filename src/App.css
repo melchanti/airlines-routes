@@ -43,7 +43,9 @@ select {
 }
 
 .map {
-  width: 90%;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .pagination a {
@@ -69,4 +71,9 @@ svg circle.destination {
 svg circle.source {
   fill: lightgreen;
   r: 0.5;
+}
+
+.divSelect {
+  margin: 0 auto;
+  width: 75%;
 }

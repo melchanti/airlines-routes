@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { Table} from 'react-bootstrap';
-import data from '../data';
 import PrevNextButtons from './PrevNextButtons';
 
-const formattedRows = (columns, format) => {
-  return data.routes.map((route, index) => (
+const formattedRows = (rows, columns, format) => {
+  return rows.map((route, index) => (
     <tr key={index}>
       <td>{index + 1}</td>
       {columns.map(column => {
@@ -24,11 +23,11 @@ const RoutesTable = ({className, columns, rows, format, PER_PAGE}) => {
     width: "90%"
   }
 
-  const ALL_ROWS = formattedRows(columns, format);
+  const ALL_ROWS = formattedRows(rows, columns, format);
 
   const [currentPage, setCurrentPage] = useState(1);
   const START_INDEX = (currentPage - 1) * PER_PAGE;
-  const END_INDEX = START_INDEX + PER_PAGE;
+  const END_INDEX = START_INDEX + PER_PAGE <= ALL_ROWS.length ? START_INDEX + PER_PAGE : ALL_ROWS.length;
   const CURRENT_ROWS = ([...ALL_ROWS].slice(START_INDEX, END_INDEX));
 
   return (
